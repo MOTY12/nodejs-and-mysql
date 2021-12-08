@@ -1,7 +1,14 @@
 import express,{Request, Response} from "express";
 import mysql from 'mysql';
-
+import dotenv from `dotenv`;
+import { env } from "process";
 const app = express() ;
+
+const connectionString = process.env.DATABASE_URL || '';
+const connection =mysql.createConnection(connectionString)
+connection.connect();
+
+dotenv.config()
 
 app.get('/api/character', (req: Request, res: Response) => {
     res.send("it works")
